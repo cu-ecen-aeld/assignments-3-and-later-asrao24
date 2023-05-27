@@ -1,3 +1,6 @@
+// Assignment2 , Author: Amith Rao
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <syslog.h>
