@@ -113,11 +113,12 @@ cd "$OUTDIR/busybox"
 sudo make distclean
 sudo make defconfig   # Optional: Use default configuration
 #make menuconfig  # Optional: Customize BusyBox configuration
-make ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu-
-make CONFIG_PREFIX=~/new_build2/rootfs ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu- install
+make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE}
+make CONFIG_PREFIX=${OUTDIR}/rootfs ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} install
 #sudo make install
 
-
+########### To be debugged from here #################
+#bin/busybox missing
 echo "Library dependencies"
 ${CROSS_COMPILE}readelf -a bin/busybox | grep "program interpreter"
 ${CROSS_COMPILE}readelf -a bin/busybox | grep "Shared library"
@@ -131,10 +132,10 @@ ${CROSS_COMPILE}readelf -a bin/busybox | grep "Shared library" | awk '{print $1}
 
 # TODO: Make device nodes
 sudo mknod -m 666 dev/null c 1 3
-sudo mknod -m 666 dev/console c 1 3
+sudo mknod -m 666 dev/console c 5 1
 
 # TODO: Clean and build the writer utility
-cd ~/LinuxBuildroot_I/Assignment_1/finder-app
+cd /home/amith_srao/Assignments/finder-app
 make clean
 make
 cp writer "$OUTDIR/rootfs/home"
