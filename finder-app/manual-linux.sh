@@ -96,9 +96,23 @@ sudo mkdir "${OUTDIR}/rootfs"
 
 #Create base directories
 cd "${OUTDIR}/rootfs"
-sudo mkdir -p bin dev etc home lib lib64 proc sbin sys tmp usr var
-sudo mkdir -p usr/bin usr/lib usr/sbin
-sudo mkdir -p var/log
+# Create base directories
+sudo mkdir -p "${OUTDIR}/rootfs/bin"
+sudo mkdir -p "${OUTDIR}/rootfs/dev"
+sudo mkdir -p "${OUTDIR}/rootfs/etc"
+sudo mkdir -p "${OUTDIR}/rootfs/home"
+sudo mkdir -p "${OUTDIR}/rootfs/lib"
+sudo mkdir -p "${OUTDIR}/rootfs/lib64"
+sudo mkdir -p "${OUTDIR}/rootfs/proc"
+sudo mkdir -p "${OUTDIR}/rootfs/sbin"
+sudo mkdir -p "${OUTDIR}/rootfs/sys"
+sudo mkdir -p "${OUTDIR}/rootfs/tmp"
+sudo mkdir -p "${OUTDIR}/rootfs/usr"
+sudo mkdir -p "${OUTDIR}/rootfs/usr/bin"
+sudo mkdir -p "${OUTDIR}/rootfs/usr/lib"
+sudo mkdir -p "${OUTDIR}/rootfs/usr/sbin"
+sudo mkdir -p "${OUTDIR}/rootfs/var"
+sudo mkdir -p "${OUTDIR}/rootfs/var/log"
 
 
 cd "$OUTDIR"
@@ -129,9 +143,8 @@ ${CROSS_COMPILE}readelf -a bin/busybox | grep "Shared library"
 
 # TODO: Add library dependencies to rootfs
 # Copy library dependencies to the rootfs
-${CROSS_COMPILE}readelf -a bin/busybox | grep "program interpreter" | awk '{print $4}' | xargs -I '{}' sudo cp -L '{}' "${OUTDIR}/rootfs/lib"
-${CROSS_COMPILE}readelf -a bin/busybox | grep "Shared library" | awk '{print $1}' | xargs -I '{}' sudo cp -L '{}' "${OUTDIR}/rootfs/lib64"
-
+${CROSS_COMPILE}readelf -a bin/busybox | grep "program interpreter" | awk '{print $4}' | tr -d ']' | xargs -I '{}' sudo cp -L '{}' "${OUTDIR}/rootfs/lib"
+${CROSS_COMPILE}readelf -a bin/busybox | grep "Shared library" | awk '{print $1}' | tr -d ']' | xargs -I '{}' sudo cp -L '{}' "${OUTDIR}/rootfs/lib64"
 
 
 # TODO: Make device nodes
