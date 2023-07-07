@@ -117,16 +117,20 @@ make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE}
 make CONFIG_PREFIX=${OUTDIR}/rootfs ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} install
 #sudo make install
 
+echo "build complete"
+
+pwd
+
 ########### To be debugged from here #################
 #bin/busybox missing
 echo "Library dependencies"
-${CROSS_COMPILE}readelf -a /bin/busybox | grep "program interpreter"
-${CROSS_COMPILE}readelf -a /bin/busybox | grep "Shared library"
+${CROSS_COMPILE}readelf -a bin/busybox | grep "program interpreter"
+${CROSS_COMPILE}readelf -a bin/busybox | grep "Shared library"
 
 # TODO: Add library dependencies to rootfs
 # Copy library dependencies to the rootfs
-${CROSS_COMPILE}readelf -a /bin/busybox | grep "program interpreter" | awk '{print $4}' | xargs -I '{}' sudo cp -L '{}' "${OUTDIR}/rootfs/lib"
-${CROSS_COMPILE}readelf -a /bin/busybox | grep "Shared library" | awk '{print $1}' | xargs -I '{}' sudo cp -L '{}' "${OUTDIR}/rootfs/lib64"
+${CROSS_COMPILE}readelf -a bin/busybox | grep "program interpreter" | awk '{print $4}' | xargs -I '{}' sudo cp -L '{}' "${OUTDIR}/rootfs/lib"
+${CROSS_COMPILE}readelf -a bin/busybox | grep "Shared library" | awk '{print $1}' | xargs -I '{}' sudo cp -L '{}' "${OUTDIR}/rootfs/lib64"
 
 
 
