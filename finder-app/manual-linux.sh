@@ -119,7 +119,7 @@ make CONFIG_PREFIX=${OUTDIR}/rootfs ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} 
 
 echo "build complete"
 
-pwd
+cd "${OUTDIR}/rootfs"
 
 ########### To be debugged from here #################
 #bin/busybox missing
