@@ -14,7 +14,7 @@ FINDER_APP_DIR=$(realpath $(dirname $0))
 ARCH=arm64
 CROSS_COMPILE=aarch64-none-linux-gnu-
 
-echo"pwd"
+echo "pwd"
 pwd
 echo "accessing /home/amith_srao"
 
