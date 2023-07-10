@@ -160,6 +160,8 @@ cd
 
 echo "runnng -- find . -name ld-linux-aarch64.so.1"
 find . -name ld-linux-aarch64.so.1
+echo "runnng -- find . -name ld-2.31.so"
+find . -name ld-2.31.so
 
 
 
