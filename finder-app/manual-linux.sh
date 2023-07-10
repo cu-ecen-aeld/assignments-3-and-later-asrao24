@@ -14,6 +14,10 @@ FINDER_APP_DIR=$(realpath $(dirname $0))
 ARCH=arm64
 CROSS_COMPILE=aarch64-none-linux-gnu-
 
+echo"pwd"
+pwd
+echo "accessing /home/amith_srao"
+
 sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/ld-2.31.so /tmp/.
 sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libm-2.31.so /tmp/.
 sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libresolv-2.31.so /tmp/.
