@@ -146,6 +146,11 @@ ${CROSS_COMPILE}readelf -a bin/busybox | grep "Shared library"
 #${CROSS_COMPILE}readelf -a bin/busybox | grep "program interpreter" | awk '{print $4}' | tr -d ']' | xargs -I '{}' sudo cp -L '{}' "${OUTDIR}/rootfs/lib"
 #${CROSS_COMPILE}readelf -a bin/busybox | grep "Shared library" | awk '{print $1}' | tr -d ']' | xargs -I '{}' sudo cp -L '{}' "${OUTDIR}/rootfs/lib64"
 
+pwd
+
+cd /home/amith_srao
+
+
 #sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib/ld-linux-aarch64.so.1 "${OUTDIR}/rootfs/lib"
 sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/ld-2.31.so "${OUTDIR}/rootfs/lib/ld-linux-aarch64.so.1"
 
@@ -167,6 +172,8 @@ sudo mknod -m 666 dev/null c 1 3
 sudo mknod -m 666 dev/console c 5 1
 
 echo "make node step completed"
+
+cd "${OUTDIR}/rootfs"
 
 # TODO: Clean and build the writer utility
 cd /home/amith_srao/Assignments/finder-app
