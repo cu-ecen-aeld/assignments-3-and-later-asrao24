@@ -148,7 +148,17 @@ ${CROSS_COMPILE}readelf -a bin/busybox | grep "Shared library"
 
 pwd
 
-cd /home/amith_srao
+echo "executing ls /home/amith_srao"
+
+ls /home/amith_srao
+
+echo "executing ls -ld /home/amith_srao"
+
+ls -ld /home/amith_srao
+
+
+echo "executing sudo cd /home/amith_srao"
+sudo cd /home/amith_srao
 
 
 #sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib/ld-linux-aarch64.so.1 "${OUTDIR}/rootfs/lib"
