@@ -14,16 +14,24 @@ FINDER_APP_DIR=$(realpath $(dirname $0))
 ARCH=arm64
 CROSS_COMPILE=aarch64-none-linux-gnu-
 
-#echo "pwd"
-#pwd
-#echo "accessing /home/amith_srao"
+echo "pwd"
+pwd
+echo "accessing /home/amith_srao"
 
-#sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/ld-2.31.so /tmp/.
-#sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libm-2.31.so /tmp/.
-#sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libresolv-2.31.so /tmp/.
-#sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libc-2.31.so /tmp/.
+V_MY_PATH=$HOME
+$HOME = /home/amith_srao
+
+echo "pwd"
+pwd
+echo "accessing /home/amith_srao"
 
 
+sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/ld-2.31.so /tmp/.
+sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libm-2.31.so /tmp/.
+sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libresolv-2.31.so /tmp/.
+sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libc-2.31.so /tmp/.
+
+$HOME = V_MY_PATH
 
 if [ $# -lt 1 ]
 then
@@ -164,7 +172,6 @@ echo "runnng -- find . -name ld-2.31.so"
 find . -name ld-2.31.so
 
 
-
 # TODO: Add library dependencies to rootfs
 # Copy library dependencies to the rootfs
 #${CROSS_COMPILE}readelf -a bin/busybox | grep "program interpreter" | awk '{print $4}' | tr -d ']' | xargs -I '{}' sudo cp -L '{}' "${OUTDIR}/rootfs/lib"
@@ -185,26 +192,31 @@ pwd
 #sudo cd /home/amith_srao
 
 
+V_MY_PATH=$HOME
+$HOME = /home/amith_srao
+
 #sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib/ld-linux-aarch64.so.1 "${OUTDIR}/rootfs/lib"
-#sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/ld-2.31.so "${OUTDIR}/rootfs/lib/ld-linux-aarch64.so.1"
-sudo cp -L /tmp/ld-2.31.so "${OUTDIR}/rootfs/lib/ld-linux-aarch64.so.1"
+sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/ld-2.31.so "${OUTDIR}/rootfs/lib/ld-linux-aarch64.so.1"
+#sudo cp -L /tmp/ld-2.31.so "${OUTDIR}/rootfs/lib/ld-linux-aarch64.so.1"
 
 
 #sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libm.so.6 "${OUTDIR}/rootfs/lib64"
-#sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libm-2.31.so "${OUTDIR}/rootfs/lib64/libm.so.6"
-sudo cp -L /tmp/libm-2.31.so "${OUTDIR}/rootfs/lib64/libm.so.6"
+sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libm-2.31.so "${OUTDIR}/rootfs/lib64/libm.so.6"
+#sudo cp -L /tmp/libm-2.31.so "${OUTDIR}/rootfs/lib64/libm.so.6"
 
 
 #sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libresolv.so.2 "${OUTDIR}/rootfs/lib64"
-#sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libresolv-2.31.so "${OUTDIR}/rootfs/lib64/libresolv.so.2"
-sudo cp -L /tmp/libresolv-2.31.so "${OUTDIR}/rootfs/lib64/libresolv.so.2"
+sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libresolv-2.31.so "${OUTDIR}/rootfs/lib64/libresolv.so.2"
+#sudo cp -L /tmp/libresolv-2.31.so "${OUTDIR}/rootfs/lib64/libresolv.so.2"
 
 #sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libc.so.6 "${OUTDIR}/rootfs/lib64"
-#sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libc-2.31.so "${OUTDIR}/rootfs/lib64/libc.so.6"
-sudo cp -L /tmp/libc-2.31.so "${OUTDIR}/rootfs/lib64/libc.so.6"
+sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libc-2.31.so "${OUTDIR}/rootfs/lib64/libc.so.6"
+#sudo cp -L /tmp/libc-2.31.so "${OUTDIR}/rootfs/lib64/libc.so.6"
 
+$HOME = V_MY_PATH
 echo "dependencies copying completed"
 
+cd "${OUTDIR}/rootfs"
 # TODO: Make device nodes
 sudo mknod -m 666 dev/null c 1 3
 sudo mknod -m 666 dev/console c 5 1
