@@ -19,7 +19,7 @@ pwd
 echo "accessing /home/amith_srao"
 
 V_MY_PATH=$HOME
-HOME = /home/amith_srao
+setenv HOME /home/amith_srao
 
 echo "pwd"
 pwd
@@ -31,7 +31,7 @@ sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x
 sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libresolv-2.31.so /tmp/.
 sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libc-2.31.so /tmp/.
 
-HOME = V_MY_PATH
+setenv HOME V_MY_PATH
 
 if [ $# -lt 1 ]
 then
@@ -193,7 +193,7 @@ pwd
 
 
 V_MY_PATH=$HOME
-HOME = /home/amith_srao
+setenv HOME /home/amith_srao
 
 #sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib/ld-linux-aarch64.so.1 "${OUTDIR}/rootfs/lib"
 sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/ld-2.31.so "${OUTDIR}/rootfs/lib/ld-linux-aarch64.so.1"
@@ -213,7 +213,7 @@ sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x
 sudo cp -L /home/amith_srao/aarc64_cross_compiler/install/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc/lib64/libc-2.31.so "${OUTDIR}/rootfs/lib64/libc.so.6"
 #sudo cp -L /tmp/libc-2.31.so "${OUTDIR}/rootfs/lib64/libc.so.6"
 
-HOME = V_MY_PATH
+setenv HOME V_MY_PATH
 echo "dependencies copying completed"
 
 cd "${OUTDIR}/rootfs"
