@@ -36,8 +36,6 @@ if [ ! -e ${OUTDIR}/linux-stable/arch/${ARCH}/boot/Image ]; then
     git checkout ${KERNEL_VERSION}
 
     # Add your kernel build steps here
-    # Patch double yylc
-    sed -i '/^YYLTYPE yylloc;/d' scripts/dtc/dtc-lexer.l
     
     # Cleaning build tree
     make ARCH=arm64 CROSS_COMPILE=${CROSS_COMPILE} mrproper
@@ -47,11 +45,7 @@ if [ ! -e ${OUTDIR}/linux-stable/arch/${ARCH}/boot/Image ]; then
     # copy manullay made .config
     #cp ${FINDER_APP_DIR}/kernel_${KERNEL_VERSION}.config .config
 
-    # Disable some keys
-    scripts/config --disable SYSTEM_TRUSTED_KEYS
-    scripts/config --disable SYSTEM_REVOCATION_KEYS
-    scripts/config --set-str SYSTEM_TRUSTED_KEYS ""
-
+   
     # Actually build
     make -j8 ARCH=arm64 CROSS_COMPILE=${CROSS_COMPILE} all
     
@@ -109,8 +103,8 @@ ${CROSS_COMPILE}readelf -a bin/busybox | grep "Shared library"
 SOURCEDIR=$(which ${CROSS_COMPILE}gcc)
 SOURCEDIR=$(dirname ${SOURCEDIR})
 
-# @TODO: make this more dynamic instead of hardcoded
-#        ie parse output from the library dependencies ^ 
+# @TODO: Copy the dependencies
+# 
 cd "${SOURCEDIR}/.."
 cp $(find . -name ld-linux-aarch64.so.1) ${OUTDIR}/rootfs/lib/
 cp $(find . -name libm.so.6) ${OUTDIR}/rootfs/lib64/
@@ -135,8 +129,8 @@ cp -r conf ${OUTDIR}/rootfs/home
 
 cp autorun-qemu.sh ${OUTDIR}/rootfs/home
 # Chown the root directory
-# Seems like a double duty, as the cpio command later also chowns all files to root
-#sudo chown -R root:root ${ROOTFS}
+
+sudo chown -R root:root ${ROOTFS}
 
 # Create initramfs.cpio.gz
 cd ${ROOTFS}
